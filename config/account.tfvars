@@ -1,7 +1,7 @@
-aws-profile = "alx365"
+aws-profile = "catlogic_minecraft"
 
-aws-region = "eu-central-1"
+aws-region = "eu-west-2"
 
-ec2-key-pair-name = "minecraft"
+ec2-key-pair-name = "minecraft_server"
 
-tf-bucket = "alx365-tf-state"
+tf-bucket = "tf-state-catelogic-minecraft"
