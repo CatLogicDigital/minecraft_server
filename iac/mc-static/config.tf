@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     profile        = "catlogic_minecraft"
-    bucket         = "tf-state-catelogic"
+    bucket         = "tf-state-catlogic"
     key            = "mincraft-server.tfstate"
-    region         = "eu-north-1"
+    region         = "eu-west-2"
     encrypt        = true
   }
 }
