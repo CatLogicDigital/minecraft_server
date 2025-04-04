@@ -1,6 +1,6 @@
 locals {
   # prefix for global uniqueness
-  prefix = "${var.aws-profile}"
+  prefix = "catmc"
 
   # lambda definitions
   lambda_on_shutoff_package = "mc-destroy.zip"
