@@ -6,8 +6,6 @@ env:
 
 phases:
   install:
-    runtime-versions:
-      terraform: 1.5
     commands:
       # Install Terraform manually (pinned version)
       - curl -fsSL -o terraform.zip "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
