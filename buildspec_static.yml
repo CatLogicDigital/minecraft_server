@@ -3,12 +3,32 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto8
-      python: 3.x
+      terraform: 1.5
     commands:
-      - pip install --upgrade pip
-      - pip install -r requirements.txt
+      - echo Installing Terraform
+      - curl -O https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
+      - unzip terraform_1.5.7_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+      - terraform --version
+
+  pre_build:
+    commands:
+      - echo Entering mc-static directory
+      - cd iac/mc-static
+      - echo Initializing Terraform
+      - terraform init
+
   build:
     commands:
-      - chmod +x src/mc-setup.sh
-      - ./src/mc-setup.sh
+      - echo Validating Terraform config
+      - terraform validate
+      - echo Planning infrastructure
+      - terraform plan -out=tfplan
+
+  post_build:
+    commands:
+      - echo Applying Terraform plan
+      - terraform apply -auto-approve tfplan
+
+artifacts:
+  files: []
