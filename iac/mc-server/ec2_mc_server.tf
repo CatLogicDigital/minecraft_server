@@ -1,13 +1,19 @@
 # ------------------------------------
 # Minecraft EC2 server
 # ------------------------------------
+
+#import existing ec2 keypair
+data "aws_key_pair" "existing" {
+  key_name = var.ec2-key-pair-name
+}
+
 resource "aws_instance" "minecraft" {
   instance_type = "t2.medium"
 
   ami               = var.ami-images[var.aws-region]
   security_groups   = [aws_security_group.minecraft.id]
   availability_zone = var.aws-zones[var.aws-region]
-  key_name          = aws_key_pair.mc_key_pair.key_name
+  key_name          = data.aws_key_pair.existing.key_name
   depends_on        = [aws_internet_gateway.minecraft]
   subnet_id         = aws_subnet.minecraft.id
 
