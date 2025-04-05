@@ -23,7 +23,7 @@ phases:
       # use below to tell terraform, this resource already exists / was previously created by you
       - terraform import -var-file="variables.tfvars" aws_s3_bucket.mc_backup catlogic-mc-backup
       - terraform import -var-file="variables.tfvars" aws_iam_role.lambda_on_shutoff lambda-on-shutoff
-
+      - terraform import -var-file="variables.tfvars" aws_lambda_function.on_shutoff mc-on-shutoff
 
   build:
     commands:  
