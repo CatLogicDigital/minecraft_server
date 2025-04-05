@@ -7,10 +7,10 @@ variable "tf-bucket" {
 variable "ami-images" {
   type = map(string)
 
-  default = {
-    "eu-west-2" = "ami-0c00cb2f2d8ea8cc6" # Latest Amazon Linux AMI
-  }
-}
+#  default = {
+#    "eu-west-2" = "ami-0c00cb2f2d8ea8cc6" # Latest Amazon Linux AMI
+#  }
+#}
 
 # define the region specific availability zone
 variable "aws-zones" {
