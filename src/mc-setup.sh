@@ -32,8 +32,8 @@ if [ ! -f "minecraft/eula.txt" ]; then
     cat > server.properties <<EOF
     difficulty=normal
     gamemode=survival
-    level-name=world
-    motd=Welcome to CatLogic Minecraft
+    level-name=Ella
+    motd=Meow :3
     pvp=true
     EOF
 
