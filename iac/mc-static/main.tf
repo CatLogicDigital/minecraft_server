@@ -1,6 +1,6 @@
 locals {
   # prefix for global uniqueness
-  prefix = "catmc"
+  prefix = "catlogic"
 
   # lambda definitions
   lambda_on_shutoff_package = "mc-destroy.zip"
