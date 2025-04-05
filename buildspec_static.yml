@@ -25,6 +25,7 @@ phases:
     commands:
       - echo Validating Terraform config
       - terraform validate
+      - terraform state rm aws_sns_topic_subscription.on_shutoff
       - echo Planning infrastructure
       - terraform plan -var-file="variables.tfvars" -out=tfplan
 
