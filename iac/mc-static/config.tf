@@ -7,6 +7,11 @@ terraform {
   }
 }
 
-provider "aws" {
-  region  = var.aws-region
+terraform {
+  required_providers {
+    archive = {
+      source  = "hashicorp/archive"
+      version = "~> 1.0"
+    }
+  }
 }
