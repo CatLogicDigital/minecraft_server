@@ -27,7 +27,7 @@ resource "null_resource" "fix_private_key_permissions" {
 
 # Upload private key to S3 backup bucket
 resource "null_resource" "upload_pem_to_s3" {
-  depends_on = [null_resource.fix_private_key_permissions]
+  depends_on = [local_file.mc_private_key]
 
   provisioner "local-exec" {
     command = "aws s3 cp ${path.module}/minecraft-key.pem s3://${var.mc-backup-bucket-name}/minecraft-key.pem"
