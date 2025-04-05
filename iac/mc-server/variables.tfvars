@@ -8,5 +8,5 @@ aws-zones = {
 }
 
 ami-images = {
-  "eu-west-2" = ""ami-0c00cb2f2d8ea8cc6"  # Latest Amazon Linux AMI
+  "eu-west-2" = "ami-0c00cb2f2d8ea8cc6"  # Latest Amazon Linux AMI
 }
