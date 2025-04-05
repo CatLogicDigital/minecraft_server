@@ -25,7 +25,7 @@ phases:
       # - terraform import -var-file="variables.tfvars" aws_iam_role.lambda_on_shutoff lambda-on-shutoff
       # - terraform import -var-file="variables.tfvars" aws_lambda_function.on_shutoff mc-on-shutoff
       # - terraform import -var-file="variables.tfvars" aws_lambda_function.on_shutoff on-shutoff
-      - terraform import -var-file="variables.tfvars" aws_lambda_permission.on_shutoff mc-on-shutoff/AllowExecutionFromSNS
+      # - terraform import -var-file="variables.tfvars" aws_lambda_permission.on_shutoff mc-on-shutoff/AllowExecutionFromSNS
 
 
   build:
