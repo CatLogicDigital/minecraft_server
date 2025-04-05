@@ -113,10 +113,9 @@ resource "null_resource" "minecraft" {
 
   connection {
     type        = "ssh"
-    host        = aws_eip_association.minecraft.public_ip
+    host        = aws_instance.minecraft.public_ip
     user        = "ec2-user"
-    port        = "22"
-    private_key = file("~/.ssh/${var.ec2-key-pair-name}.pem")
+    private_key = file("${path.module}/minecraft-key.pem")
   }
 
   depends_on = [null_resource.download_pem]
