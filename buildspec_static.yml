@@ -20,8 +20,8 @@ phases:
       - cd iac/mc-static
       - echo Initializing Terraform
       - terraform init
-      - terraform import aws_s3_bucket.mc_backup catlogic-mc-backup
-      - terraform import aws_iam_role.lambda_on_shutoff lambda-on-shutoff
+      #- terraform import aws_s3_bucket.mc_backup catlogic-mc-backup
+      #- terraform import aws_iam_role.lambda_on_shutoff lambda-on-shutoff
 
   build:
     commands:  
