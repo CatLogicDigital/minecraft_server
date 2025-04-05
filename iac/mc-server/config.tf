@@ -5,12 +5,19 @@ terraform {
     region         = "eu-west-2"
     encrypt        = true
   }
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    archive = {
+      source  = "hashicorp/archive"
+      version = "~> 1.0"
+    }
+  }
 }
 
 provider "aws" {
-  region = var.aws-region
-}
-
-provider "null" {
-  version = "~> 2.1"
+  region = "eu-west-2"
 }
