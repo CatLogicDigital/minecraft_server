@@ -7,7 +7,7 @@ resource "aws_instance" "minecraft" {
   ami               = var.ami-images[var.aws-region]
   security_groups   = [aws_security_group.minecraft.id]
   availability_zone = var.aws-zones[var.aws-region]
-  key_name          = var.ec2-key-pair-name
+  key_name          = aws_key_pair.mc_key_pair.key_name
   depends_on        = [aws_internet_gateway.minecraft]
   subnet_id         = aws_subnet.minecraft.id
 
