@@ -26,7 +26,7 @@ phases:
       - echo Validating Terraform config
       - terraform validate
       - echo Planning infrastructure
-      - terraform plan -out=tfplan
+      - terraform plan -var-file="variables.tfvars" -out=tfplan
 
   post_build:
     commands:
