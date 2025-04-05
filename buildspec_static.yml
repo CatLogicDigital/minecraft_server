@@ -23,6 +23,7 @@ phases:
 
   build:
     commands:
+      - terraform import aws_s3_bucket.mc_backup catlogic-mc-backup
       - echo Validating Terraform config
       - terraform validate
       - echo Planning infrastructure
