@@ -2,9 +2,19 @@
 # Minecraft EC2 server
 # ------------------------------------
 
-#import existing ec2 keypair
+# import existing ec2 keypair
 data "aws_key_pair" "existing" {
   key_name = var.ec2-key-pair-name
+}
+
+# import s3 used for backup
+data "aws_s3_bucket" "mc_backup" {
+  bucket = var.mc-backup-bucket-name
+}
+
+variable "mc-backup-bucket-name" {
+  description = "The name of the backup S3 bucket"
+  type        = string
 }
 
 resource "aws_instance" "minecraft" {
@@ -147,7 +157,7 @@ resource "null_resource" "minecraft" {
   provisioner "remote-exec" {
     inline = [
       "chmod a+x mc-*.sh",
-      "./mc-setup.sh ${data.aws_s3_bucket.mc_bucket.id} ${data.aws_sns_topic.mc_shutoff.arn} ${var.aws-region}",
+      "./mc-setup.sh ${data.aws_s3_bucket.mc_bucket.id} ${data.aws_sns_topic.mc_shutoff.arn} ${var.aws-region}"
     ]
   }
 }
