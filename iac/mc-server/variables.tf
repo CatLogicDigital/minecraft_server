@@ -1,8 +1,3 @@
-# aws profile
-variable "aws-profile" {
-  type = string
-}
-
 # region
 variable "aws-region" {
   type = string
@@ -16,6 +11,12 @@ variable "ec2-key-pair-name" {
 # bucket name for tf state
 variable "tf-bucket" {
   type = string
+}
+
+# bucket for backup
+variable "mc-backup-bucket-name" {
+  type        = string
+  description = "The name of the backup S3 bucket"
 }
 
 # define the region specific ami images
