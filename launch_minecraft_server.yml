@@ -18,6 +18,9 @@ phases:
     commands:
       - echo Entering mc-server directory
       - cd iac/mc-server
+      - echo Downloading minecraft-key.pem from S3
+      - aws s3 cp s3://catlogic-mc-backup/minecraft-key.pem ./minecraft-key.pem
+      - chmod 600 ./minecraft-key.pem
       - echo Initializing Terraform
       - terraform init
 
