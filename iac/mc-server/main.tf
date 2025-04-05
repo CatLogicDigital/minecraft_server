@@ -1,6 +1,6 @@
 locals {
   # prefix for global uniqueness
-  prefix = "${var.aws-profile}"
+  prefix = "catlogic"
 
   common_tags = {
     # See https://github.com/hashicorp/terraform/issues/139#issuecomment-250137504
