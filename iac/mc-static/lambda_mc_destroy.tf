@@ -4,7 +4,7 @@ resource "aws_lambda_function" "on_shutoff" {
   handler          = "${local.lambda_on_shutoff_handler}"
   filename         = "${data.archive_file.on_shutoff.output_path}"
   source_code_hash = "${data.archive_file.on_shutoff.output_base64sha256}"
-  runtime          = "python3.6"
+  runtime          = "python3.9"
   role             = "${aws_iam_role.lambda_on_shutoff.arn}"
   publish          = true
   memory_size      = 256
