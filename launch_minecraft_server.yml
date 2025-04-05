@@ -1,0 +1,37 @@
+version: 0.2
+
+env:
+  variables:
+    TERRAFORM_VERSION: "1.5.7"
+
+phases:
+  install:
+    commands:
+      # Install Terraform manually (pinned version)
+      - curl -fsSL -o terraform.zip "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+      - unzip terraform.zip
+      - chmod +x terraform
+      - mv terraform /usr/local/bin/
+      - terraform --version
+
+  pre_build:
+    commands:
+      - echo Entering mc-server directory
+      - cd iac/mc-server
+      - echo Initializing Terraform
+      - terraform init
+
+  build:
+    commands:
+      - echo Validating Terraform config
+      - terraform validate
+      - echo Planning infrastructure
+      - terraform plan -var-file="variables.tfvars" -out=tfplan
+
+  post_build:
+    commands:
+      - echo Applying Terraform plan
+      - terraform apply -auto-approve tfplan
+
+artifacts:
+  files: []
