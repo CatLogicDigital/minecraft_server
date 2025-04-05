@@ -15,6 +15,7 @@ data "aws_sns_topic" "mc_shutoff" {
 
 # Reference to MC backup bucket for TF config template
 data "aws_s3_bucket" "mc_bucket" {
+  bucket = var.mc-backup-bucket-name
 }
 
 resource "aws_s3_bucket_acl" "mc_backup_acl" {
