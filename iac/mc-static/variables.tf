@@ -20,3 +20,7 @@ variable "aws-zones" {
   }
 }
 
+variable "mc-backup-bucket-name" {
+  description = "S3 bucket to store the EC2 private key"
+  type        = string
+}
