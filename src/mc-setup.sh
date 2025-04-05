@@ -18,10 +18,11 @@ aws s3 sync s3://$1 minecraft/
 if [ ! -f "minecraft/eula.txt" ]; then
     echo "Installing Minecraft"
     cd minecraft
-        # pick latest from https://www.minecraft.net/en-us/download/server/
+        # https://www.minecraft.net/en-us/download/server
         #wget https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar
-        wget wget https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar
+        wget wget https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
         # run the jar file for the first time. It will fail but don’t worry about it, that is expected behavior. Run this command:
+        #java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.5.jar nogui
         java -Xmx1024M -Xms1024M -jar server.jar nogui
 
     echo "### Accepting EULA"
