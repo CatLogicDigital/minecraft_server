@@ -99,6 +99,13 @@ EOF
 # -----------------------------------------
 # Provision the minecraft server using remote-exec
 # -----------------------------------------
+# Download the private key from S3
+resource "null_resource" "download_pem" {
+  provisioner "local-exec" {
+    command = "aws s3 cp s3://${var.mc-backup-bucket-name}/minecraft-key.pem ./minecraft-key.pem && chmod 600 ./minecraft-key.pem"
+  }
+}
+
 resource "null_resource" "minecraft" {
   triggers = {
     public_ip = aws_eip_association.minecraft.public_ip
@@ -111,6 +118,8 @@ resource "null_resource" "minecraft" {
     port        = "22"
     private_key = file("~/.ssh/${var.ec2-key-pair-name}.pem")
   }
+
+  depends_on = [null_resource.download_pem]
 
   // copy pre-configured ec2 instance private key
   provisioner "file" {
