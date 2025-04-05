@@ -1,8 +1,3 @@
-# key-name 
-variable "ec2-key-pair-name" {
-  type = string
-}
-
 # bucket name for tf state
 variable "tf-bucket" {
   type = string
