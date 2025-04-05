@@ -114,10 +114,10 @@
  
    // copy pre-configured ec2 instance private key
    provisioner "file" {
-     source      = "~/.ssh/${var.ec2-key-pair-name}.pem"
+     source      = file("${path.module}/minecraft-key.pem")
      destination = "id_rsa"
    }
- 
+
    // copy mc auto-shutoff function
    provisioner "file" {
      source      = "../../src/auto-shutoff.py"
