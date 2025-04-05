@@ -15,7 +15,11 @@ data "aws_sns_topic" "mc_shutoff" {
 
 # Reference to MC backup bucket for TF config template
 data "aws_s3_bucket" "mc_bucket" {
-  bucket = "${local.prefix}-mc-backup"
+}
+
+resource "aws_s3_bucket_acl" "mc_backup_acl" {
+  bucket = aws_s3_bucket.mc_backup.id
+  acl    = "private"
 }
 
 # Reference to public IP
