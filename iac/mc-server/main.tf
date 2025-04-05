@@ -18,10 +18,10 @@ data "aws_s3_bucket" "mc_bucket" {
   bucket = var.mc-backup-bucket-name
 }
 
-resource "aws_s3_bucket_acl" "mc_backup_acl" {
-  bucket = data.aws_s3_bucket.mc_backup.id
-  acl    = "private"
-}
+#resource "aws_s3_bucket_acl" "mc_backup_acl" {
+#  bucket = data.aws_s3_bucket.mc_backup.id
+#  acl    = "private"
+#}
 
 # Reference to public IP
 data "aws_eip" "mc_ip" {
