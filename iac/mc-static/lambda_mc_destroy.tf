@@ -19,21 +19,21 @@ data "archive_file" "on_shutoff" {
   output_path = "${local.lambda_on_shutoff_package}"
 }
 
-#// Lambda trigger on SNS event
-#resource "aws_lambda_permission" "on_shutoff" {
-#  statement_id  = "AllowExecutionFromSNS"
-#  action        = "lambda:InvokeFunction"
-#  function_name = "${aws_lambda_function.on_shutoff.function_name}"
-#  principal     = "sns.amazonaws.com"
-#  source_arn    = "${aws_sns_topic.mc_shutoff.arn}"
-#}
+// Lambda trigger on SNS event
+resource "aws_lambda_permission" "on_shutoff" {
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.on_shutoff.function_name}"
+  principal     = "sns.amazonaws.com"
+  source_arn    = "${aws_sns_topic.mc_shutoff.arn}"
+}
 
-#// Lambda subscribe to SNS topic
-#resource "aws_sns_topic_subscription" "on_shutoff" {
-#  topic_arn = "${aws_sns_topic.mc_shutoff.arn}"
-#  protocol  = "lambda"
-#  endpoint  = "${aws_lambda_function.on_shutoff.arn}"
-#}
+// Lambda subscribe to SNS topic
+resource "aws_sns_topic_subscription" "on_shutoff" {
+  topic_arn = "${aws_sns_topic.mc_shutoff.arn}"
+  protocol  = "lambda"
+  endpoint  = "${aws_lambda_function.on_shutoff.arn}"
+}
 
 // The IAM role actually used by the lambda functions
 resource "aws_iam_role" "lambda_on_shutoff" {
