@@ -109,7 +109,7 @@
      host        = aws_eip_association.minecraft.public_ip
      user        = "ec2-user"
      port        = "22"
-     private_key = file("~/.ssh/${var.ec2-key-pair-name}.pem")
+     private_key = file("${path.module}/minecraft-key.pem")
    }
  
    // copy pre-configured ec2 instance private key
