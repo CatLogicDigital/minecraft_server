@@ -26,6 +26,7 @@ phases:
       - echo Validating Terraform config
       - terraform validate
       - echo Planning infrastructure
+      - terraform import -var-file="variables.tfvars" aws_s3_bucket.mc_backup catmc-mc-backup
       - terraform plan -var-file="variables.tfvars" -out=tfplan
 
   post_build:
