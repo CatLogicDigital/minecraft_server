@@ -3,7 +3,10 @@
 #sudo yum remove java-1.7.0-openjdk -y
 
 # install Java
-sudo yum install java-17-amazon-corretto -y || sudo apt install openjdk-17-jre-headless -y
+# Install Java 21 (Amazon Corretto)
+sudo rpm --import https://yum.corretto.aws/corretto.key
+sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
+sudo yum install -y java-21-amazon-corretto-devel
 
 # copy tf templates to minecraft backup bucket
 aws s3 cp config.tf s3://$1
