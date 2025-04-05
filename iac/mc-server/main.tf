@@ -19,7 +19,7 @@ data "aws_s3_bucket" "mc_bucket" {
 }
 
 resource "aws_s3_bucket_acl" "mc_backup_acl" {
-  bucket = aws_s3_bucket.mc_backup.id
+  bucket = data.aws_s3_bucket.mc_backup.id
   acl    = "private"
 }
 
