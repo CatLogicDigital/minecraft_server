@@ -12,11 +12,6 @@ data "aws_s3_bucket" "mc_backup" {
   bucket = var.mc-backup-bucket-name
 }
 
-variable "mc-backup-bucket-name" {
-  description = "The name of the backup S3 bucket"
-  type        = string
-}
-
 resource "aws_instance" "minecraft" {
   instance_type = "t2.medium"
 
