@@ -37,7 +37,6 @@ if [ ! -f "minecraft/eula.txt" ]; then
     pvp=true
     EOF
 
-
     cd ..
 fi
 
