@@ -1,8 +1,3 @@
-# region
-variable "aws-region" {
-  type = string
-}
-
 # key-name 
 variable "ec2-key-pair-name" {
   type = string
