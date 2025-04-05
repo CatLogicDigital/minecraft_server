@@ -10,7 +10,3 @@ terraform {
 provider "aws" {
   region  = var.aws-region
 }
-
-provider "archive" {
-  version = "~> 1.0"
-}
