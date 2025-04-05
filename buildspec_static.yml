@@ -20,6 +20,7 @@ phases:
       - cd iac/mc-static
       - echo Initializing Terraform
       - terraform init
+      # use below to tell terraform, this resource already exists / was previously created by you
       - terraform import -var-file="variables.tfvars" aws_s3_bucket.mc_backup catlogic-mc-backup
       - terraform import -var-file="variables.tfvars" aws_iam_role.lambda_on_shutoff lambda-on-shutoff
 
