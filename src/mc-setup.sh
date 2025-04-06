@@ -50,10 +50,18 @@ sudo pip3 install mcstatus
 export PATH=$PATH:/usr/local/bin
 
 # insert auto-shutoff into cron tab and run each minute
-(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
+###(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
 # Start Minecraft in a named screen session called "minecraft"
-screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
+###screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
+cd minecraft
+    rm -f nohup.out || true
+    # copying from S3 drops the executable bit
+    chmod a+x run_nogui.sh
+    nohup ./run_nogui.sh &
+    sleep 10
+    cat nohup.out
+cd ..
 
 # Wait for the server to start
 echo "Waiting for server to start..."
@@ -68,17 +76,8 @@ timeout 60 bash -c 'until grep -q "Done (" minecraft/logs/latest.log; do sleep 1
 echo "Server startup detected."
 
 # OP the players using screen input
-echo "Assigning Operators"
-screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
-screen -S minecraft -p 0 -X stuff "op LunarKitty$(printf '\r')"
+#echo "Assigning Operators"
+#screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
+#screen -S minecraft -p 0 -X stuff "op LunarKitty$(printf '\r')"
 
 echo "Server is ready :3"
-
-#cd minecraft
-#    rm nohup.out || true
-#    # copying from S3 drops the x perm
-#    chmod a+x run_nogui.sh
-#    nohup ./run_nogui.sh &
-#    sleep 10
-#    cat nohup.out
-#cd ..
