@@ -31,7 +31,7 @@ echo "Setting server properties"
 set_prop() {
     key="$1"
     value="$2"
-    file="minecraft/server.properties"
+    file="server.properties"
     if grep -q "^$key=" "$file"; then
         sed -i "s/^$key=.*/$key=$value/" "$file"
     else
@@ -46,7 +46,7 @@ set_prop motd "meow :3"
 set_prop view-distance 16
 
 # Create ops.json to assign operator privileges
-cat > minecraft/ops.json <<EOF
+cat > ops.json <<EOF
 [
   {
     "uuid": "b9ae6d1a-9f42-4208-8424-974695949992",
