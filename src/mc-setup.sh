@@ -46,23 +46,27 @@ fi
 # rem
 # install minecraft status 
 echo "Installing Minecraft Status [mcstatus]"
-export PATH=$PATH:/usr/local/bin
 sudo pip3 install mcstatus
+export PATH=$PATH:/usr/local/bin
 
 # insert auto-shutoff into cron tab and run each minute
-(crontab -l 2>/dev/null; echo "* * * * * python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
+(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
 # Start Minecraft in a named screen session called "minecraft"
 screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
 
 # Wait for the server to start
+echo "Installing for server to start"
 while ! grep -q "Done (" minecraft/logs/latest.log 2>/dev/null; do
     sleep 1
 done
 
 # OP the players using screen input
+echo "Assigning Operators"
 screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
 screen -S minecraft -p 0 -X stuff "op LunarKitty$(printf '\r')"
+
+echo "Server  is ready :3"
 
 #cd minecraft
 #    rm nohup.out || true
