@@ -48,13 +48,13 @@ EOF
 fi
 
 # install pip
-sudo yum install -y python3-pip
+sudo pip3 install mcstatus
 # install minecraft status 
 echo "Installing Minecraft Status [mcstatus]"
 sudo pip install mcstatus
 
 # insert auto-shutoff into cron tab and run each minute
-### (crontab -l 2>/dev/null; echo "* * * * * python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
+(crontab -l 2>/dev/null; echo "* * * * * python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
 # start minecraft (does not return)
 screen java -Xmx1024M -Xms1024M -jar server.jar nogui
