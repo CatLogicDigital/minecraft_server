@@ -43,10 +43,11 @@ if [ -f "minecraft/server.properties" ]; then
 fi
 
 # install pip
-sudo pip3 install mcstatus
+# rem
 # install minecraft status 
 echo "Installing Minecraft Status [mcstatus]"
-sudo pip install mcstatus
+export PATH=$PATH:/usr/local/bin
+sudo pip3 install mcstatus
 
 # insert auto-shutoff into cron tab and run each minute
 (crontab -l 2>/dev/null; echo "* * * * * python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
