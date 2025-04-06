@@ -58,7 +58,7 @@ screen java -Xmx1024M -Xms1024M -jar server.jar nogui
 # op the player after startup
 sleep 10
 screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
-screen -S minecraft -p 0 -X stuff "op Xaellavie$(printf '\r')"
+screen -S minecraft -p 0 -X stuff "op LunarKitty$(printf '\r')"
 
 #cd minecraft
 #    rm nohup.out || true
