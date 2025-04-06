@@ -46,8 +46,8 @@ fi
 cat > minecraft/ops.json <<EOF
 [
   {
-    "uuid": "efdbe39f-6aaa-4bca-843c-8ddd370516aa",
-    "name": "InstantFail",
+    "uuid": "b9ae6d1a-9f42-4208-8424-974695949992",
+    "name": "Instant_Fail",
     "level": 4,
     "bypassesPlayerLimit": false
   },
