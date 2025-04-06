@@ -56,11 +56,13 @@ sudo pip install mcstatus
 # insert auto-shutoff into cron tab and run each minute
 (crontab -l 2>/dev/null; echo "* * * * * python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
-# start minecraft (does not return)
-screen java -Xmx1024M -Xms1024M -jar server.jar nogui
+# Start Minecraft in a named screen session called "minecraft"
+screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
 
-# op the player after startup
+# Wait a few seconds for server to start up
 sleep 10
+
+# OP the players using screen input
 screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
 screen -S minecraft -p 0 -X stuff "op LunarKitty$(printf '\r')"
 
