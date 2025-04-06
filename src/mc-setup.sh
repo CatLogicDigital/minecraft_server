@@ -81,16 +81,4 @@ screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
 #    cat nohup.out
 #cd ..
 
-# Wait for the server to start
-echo "Waiting for server to start..."
-
-# Wait until the log file exists
-while [ ! -f minecraft/logs/latest.log ]; do
-    sleep 1
-done
-
-# Wait until "Done" appears in the log
-timeout 60 bash -c 'until grep -q "Done (" minecraft/logs/latest.log; do sleep 1; done'
-echo "Server startup detected."
-
 echo "Server is ready :3"
