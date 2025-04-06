@@ -56,10 +56,16 @@ export PATH=$PATH:/usr/local/bin
 screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
 
 # Wait for the server to start
-echo "Waiting for server to start"
-while ! grep -q "Done (" minecraft/logs/latest.log 2>/dev/null; do
+echo "Waiting for server to start..."
+
+# Wait until the log file exists
+while [ ! -f minecraft/logs/latest.log ]; do
     sleep 1
 done
+
+# Wait until "Done" appears in the log
+timeout 60 bash -c 'until grep -q "Done (" minecraft/logs/latest.log; do sleep 1; done'
+echo "Server startup detected."
 
 # OP the players using screen input
 echo "Assigning Operators"
