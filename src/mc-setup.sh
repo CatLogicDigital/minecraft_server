@@ -72,13 +72,5 @@ export PATH=$PATH:/usr/local/bin
 
 # Start Minecraft in a named screen session called "minecraft"
 screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
-#cd minecraft
-#    rm -f nohup.out || true
-#    # copying from S3 drops the executable bit
-#    chmod a+x run_nogui.sh
-#    nohup ./run_nogui.sh &
-#    sleep 10
-#    cat nohup.out
-#cd ..
 
 echo "Server is ready :3"
