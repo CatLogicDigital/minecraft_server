@@ -43,7 +43,8 @@ set_prop level-name Ella
 set_prop enable-command-block true
 set_prop gamemode survival
 set_prop motd "meow :3"
-set_prop view-distance 16
+set_prop view-distance 25
+#view distance default 10 max 32
 
 # Create ops.json to assign operator privileges
 cat > ops.json <<EOF
