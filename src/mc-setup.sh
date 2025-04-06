@@ -75,6 +75,6 @@ EOF
 ###(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
 # Start Minecraft in a named screen session called "minecraft"
-screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
+screen -S minecraft -dm bash -c "cd ~/minecraft && java -Xmx1024M -Xms1024M -jar server.jar nogui"
 
 echo "Server is ready :3"
