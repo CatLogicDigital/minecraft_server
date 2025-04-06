@@ -55,8 +55,10 @@ sudo pip3 install mcstatus
 # Start Minecraft in a named screen session called "minecraft"
 screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
 
-# Wait a few seconds for server to start up
-sleep 10
+# Wait for the server to start
+while ! grep -q "Done (" minecraft/logs/latest.log 2>/dev/null; do
+    sleep 1
+done
 
 # OP the players using screen input
 screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
