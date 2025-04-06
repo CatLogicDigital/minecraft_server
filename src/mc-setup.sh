@@ -1,8 +1,3 @@
-# sudo yum update -y
-#sudo yum install java-1.8.0 -y
-#sudo yum remove java-1.7.0-openjdk -y
-
-# install Java
 # Install Java 21 (Amazon Corretto)
 sudo rpm --import https://yum.corretto.aws/corretto.key
 sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
@@ -16,11 +11,6 @@ aws s3 cp account.tfvars s3://$1
 # create minecraft dir and sync with world backup bucket 
 mkdir minecraft
 
-# Enable Multi-Part Upload (speeds up upload to s3 only)
-# aws configure set default.s3.multipart_threshold 128MB
-# aws configure set default.s3.multipart_chunksize 64MB
-# Sync the backup to the server
-# aws s3 sync s3://$1 minecraft/ --cli-read-timeout 0 --cli-connect-timeout 0 --exclude 'logs/*'
 # copy the backup zip over
 aws s3 cp s3://$1/2025_04_06_minecraft_backup.zip minecraft-backup.zip --no-progress --cli-read-timeout 0 --cli-connect-timeout 0
 # unzip the backup
