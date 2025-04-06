@@ -25,17 +25,26 @@ if [ ! -f "minecraft/eula.txt" ]; then
 
     echo "### Accepting EULA"
     echo "eula=true" > eula.txt
-
-    echo "### Setting server properties"
-    cat > server.properties <<EOF
-difficulty=normal
-gamemode=creative # or survival, adventure, spectator
-level-name=Ella
-motd=Meow :3
-pvp=true
-EOF
-
 fi
+
+echo "Setting server properties"
+set_prop() {
+    key="$1"
+    value="$2"
+    file="minecraft/server.properties"
+    if grep -q "^$key=" "$file"; then
+        sed -i "s/^$key=.*/$key=$value/" "$file"
+    else
+        echo "$key=$value" >> "$file"
+    fi
+}
+
+set_prop level-name Ella
+set_prop enable-command-block true
+set_prop gamemode survival
+set_prop motd "meow :3"
+set_prop view-distance 16
+
 
 # Set view-distance to 16 in server.properties ###max is 32, default is 10
 if [ -f "minecraft/server.properties" ]; then
