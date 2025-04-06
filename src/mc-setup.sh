@@ -66,7 +66,7 @@ echo "Assigning Operators"
 screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
 screen -S minecraft -p 0 -X stuff "op LunarKitty$(printf '\r')"
 
-echo "Server  is ready :3"
+echo "Server is ready :3"
 
 #cd minecraft
 #    rm nohup.out || true
