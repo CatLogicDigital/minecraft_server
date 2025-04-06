@@ -71,15 +71,15 @@ export PATH=$PATH:/usr/local/bin
 ###(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
 # Start Minecraft in a named screen session called "minecraft"
-###screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
-cd minecraft
-    rm -f nohup.out || true
-    # copying from S3 drops the executable bit
-    chmod a+x run_nogui.sh
-    nohup ./run_nogui.sh &
-    sleep 10
-    cat nohup.out
-cd ..
+screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
+#cd minecraft
+#    rm -f nohup.out || true
+#    # copying from S3 drops the executable bit
+#    chmod a+x run_nogui.sh
+#    nohup ./run_nogui.sh &
+#    sleep 10
+#    cat nohup.out
+#cd ..
 
 # Wait for the server to start
 echo "Waiting for server to start..."
