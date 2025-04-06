@@ -5,7 +5,7 @@ dnspython==1.15.0
 dnspython3==1.15.0
 docutils==0.15.2
 jmespath==0.9.4
-mcstatus==2.3.0
+mcstatus==11.1.1 # 2.3.0 # updated 06/04/2024
 python-dateutil==2.8.1
 s3transfer==0.2.1
 six==1.13.0
