@@ -3,6 +3,7 @@ import time
 import os.path
 import subprocess
 import sys
+import datetime
 
 def check_call(args):
     proc = subprocess.Popen(args,
@@ -43,7 +44,19 @@ if os.path.exists(last_activity_file):
                 if not os.path.exists(backup_marker):
                     with open(backup_marker, 'w') as p:
                         p.write(str(time.time()))
-                    check_call(f'aws s3 sync /home/ec2-user/minecraft/ {sys.argv[1]} --exclude logs/*')
+
+                    # Create timestamped zip file
+                    timestamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+                    zip_name = f"/tmp/{timestamp}__minecraft_backup.zip"
+                    check_call(f'cd /home/ec2-user && zip -r {zip_name} minecraft -x "minecraft/logs/*"')
+
+                    # Upload to S3
+                    s3_base = sys.argv[1].rstrip('/')
+                    s3_path = f'{s3_base}/{timestamp}__minecraft_backup.zip'
+                    static_path = f'{s3_base}/minecraft_backup.zip'
+
+                    check_call(f'aws s3 cp {zip_name} {s3_path} --no-progress --cli-read-timeout 0 --cli-connect-timeout 0')
+                    check_call(f'aws s3 cp {s3_path} {static_path}')
 
                 # Trigger server shutdown
                 check_call(f'aws sns publish --topic-arn {sys.argv[2]} --message "{{}}" --region {sys.argv[3]}')
