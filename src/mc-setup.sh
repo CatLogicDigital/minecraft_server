@@ -25,6 +25,7 @@ if [ ! -f "minecraft/eula.txt" ]; then
 
     echo "### Accepting EULA"
     echo "eula=true" > eula.txt
+    cd ..
 fi
 
 echo "Setting server properties"
