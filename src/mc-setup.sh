@@ -37,6 +37,11 @@ EOF
 
 fi
 
+# Set view-distance to 16 in server.properties ###max is 32, default is 10
+if [ -f "minecraft/server.properties" ]; then
+    sed -i 's/^view-distance=.*/view-distance=16/' minecraft/server.properties
+fi
+
 # install pip
 sudo pip3 install mcstatus
 # install minecraft status 
