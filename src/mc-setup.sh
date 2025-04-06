@@ -15,7 +15,12 @@ aws s3 cp account.tfvars s3://$1
 
 # create minecraft dir and sync with world backup bucket 
 mkdir minecraft
-aws s3 sync s3://$1 minecraft/
+
+# Enable Multi-Part Upload (speeds up upload to s3 only)
+# aws configure set default.s3.multipart_threshold 128MB
+# aws configure set default.s3.multipart_chunksize 64MB
+# Sync the backup to the server
+aws s3 sync s3://$1 minecraft/ --cli-read-timeout 0 --cli-connect-timeout 0 --exclude 'logs/*'
 
 # install minecraft if this is the first time
 if [ ! -f "minecraft/eula.txt" ]; then
