@@ -93,9 +93,4 @@ done
 timeout 60 bash -c 'until grep -q "Done (" minecraft/logs/latest.log; do sleep 1; done'
 echo "Server startup detected."
 
-# OP the players using screen input
-#echo "Assigning Operators"
-#screen -S minecraft -p 0 -X stuff "op InstantFail$(printf '\r')"
-#screen -S minecraft -p 0 -X stuff "op LunarKitty$(printf '\r')"
-
 echo "Server is ready :3"
