@@ -30,7 +30,7 @@ if [ ! -f "minecraft/eula.txt" ]; then
     echo "### Setting server properties"
     cat > server.properties <<EOF
 difficulty=normal
-gamemode=survival
+gamemode=creative # or survival, adventure, spectator
 level-name=Ella
 motd=Meow :3
 pvp=true
