@@ -45,12 +45,6 @@ set_prop gamemode survival
 set_prop motd "meow :3"
 set_prop view-distance 16
 
-
-# Set view-distance to 16 in server.properties ###max is 32, default is 10
-if [ -f "minecraft/server.properties" ]; then
-    sed -i 's/^view-distance=.*/view-distance=16/' minecraft/server.properties
-fi
-
 # Create ops.json to assign operator privileges
 cat > minecraft/ops.json <<EOF
 [
