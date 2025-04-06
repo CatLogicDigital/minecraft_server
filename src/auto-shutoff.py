@@ -1,4 +1,4 @@
-from mcstatus import MinecraftServer
+from mcstatus.server import JavaServer as MinecraftServer
 import time
 import os.path
 import subprocess
