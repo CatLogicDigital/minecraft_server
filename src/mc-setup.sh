@@ -42,6 +42,24 @@ if [ -f "minecraft/server.properties" ]; then
     sed -i 's/^view-distance=.*/view-distance=16/' minecraft/server.properties
 fi
 
+# Create ops.json to assign operator privileges
+cat > minecraft/ops.json <<EOF
+[
+  {
+    "uuid": "efdbe39f-6aaa-4bca-843c-8ddd370516aa",
+    "name": "InstantFail",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "263c8457-58d7-4bcc-908f-e6ca9690a377",
+    "name": "LunarKitty",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]
+EOF
+
 # install pip
 # rem
 # install minecraft status 
