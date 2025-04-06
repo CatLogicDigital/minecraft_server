@@ -56,7 +56,7 @@ export PATH=$PATH:/usr/local/bin
 screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
 
 # Wait for the server to start
-echo "Installing for server to start"
+echo "Waiting for server to start"
 while ! grep -q "Done (" minecraft/logs/latest.log 2>/dev/null; do
     sleep 1
 done
