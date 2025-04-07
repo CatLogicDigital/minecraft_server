@@ -16,10 +16,12 @@ aws s3 cp s3://$1/20250406_201203__minecraft_backup.zip minecraft-backup.zip --n
 # unzip the backup
 unzip -o minecraft-backup.zip -d minecraft
 
+# navigate into mincraft dir
+cd minecraft
+
 # install minecraft if this is the first time
 if [ ! -f "minecraft/eula.txt" ]; then
     echo "Installing Minecraft"
-    cd minecraft
         wget https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
         java -Xmx1024M -Xms1024M -jar server.jar nogui
 
@@ -78,6 +80,9 @@ EOF
 #screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui
 #screen java -Xmx1024M -Xms1024M -jar server.jar nogui
 #screen -S minecraft -dm bash -c "java -Xmx1024M -Xms1024M -jar server.jar nogui"
+
+#to try
 screen -dmS minecraft bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui'
+##screen -dm bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui'
 
 echo "Server is ready :3"
