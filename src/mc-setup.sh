@@ -80,7 +80,7 @@ EOF
 
 # ensure all files are readable by screen
 #ls
-#sudo chattr -i -R .
+sudo chattr -i -R .
 #sudo chown -R $(whoami):$(whoami) .
 #sudo chmod -R 755 .
 
