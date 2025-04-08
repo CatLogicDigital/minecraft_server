@@ -86,6 +86,8 @@ EOF
 #screen -dmS minecraft bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui' #failed
 #screen -dm bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui'
 # Start the server in a screen session
-screen -dmS minecraft bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
+#screen -dmS minecraft bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
+screen -S minecraft
+bash -c "java -Xmx1024M -Xms1024M -jar server.jar nogui"
 
 echo "Server is ready :3"
