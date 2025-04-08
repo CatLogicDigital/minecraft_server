@@ -92,8 +92,4 @@ EOF
 # launch without debug (so codebuild can end)
 screen -dmS minecraft bash -c "cd /minecraft && java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 
-# redirect port to screen
-sudo yum install -y socat
-socat TCP-LISTEN:25565,fork EXEC:"screen -S minecraft"
-
 echo "Server is ready :3"
