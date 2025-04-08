@@ -85,7 +85,7 @@ EOF
 #to try
 #screen -dmS minecraft bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui' #failed
 #screen -dm bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui'
-screen -dmS minecraft java -Xmx1024M -Xms1024M -jar server.jar nogui
+screen -dmS minecraft bash -c "java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 
 
 echo "Server is ready :3"
