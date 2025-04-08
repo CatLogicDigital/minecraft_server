@@ -91,6 +91,6 @@ chmod -R 755 .
 # Start the server in a screen session
 #screen -dmS minecraft bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 screen -dmS minecraft 
-bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar minecraft\server.jar nogui > minecraft.log 2>&1"
+bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 
 echo "Server is ready :3"
