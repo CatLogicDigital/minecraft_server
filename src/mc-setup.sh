@@ -85,16 +85,11 @@ EOF
 #sudo chmod -R 755 .
 
 # Start Minecraft in a named screen session called "minecraft"
-#screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui #failed
-#screen java -Xmx1024M -Xms1024M -jar server.jar nogui
-#screen -S minecraft -dm bash -c "java -Xmx1024M -Xms1024M -jar server.jar nogui" #failed
+# below 2 line use debug more
+# screen -dmS minecraft 
+# bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 
-#to try
-#screen -dmS minecraft bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui' #failed
-#screen -dm bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui'
-# Start the server in a screen session
-#screen -dmS minecraft bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
-screen -dmS minecraft 
-bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
+# launch without debug (so codebuild can end)
+screen -dmS minecraft bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 
 echo "Server is ready :3"
