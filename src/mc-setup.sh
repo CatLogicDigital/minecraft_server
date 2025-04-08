@@ -12,10 +12,11 @@ aws s3 cp account.tfvars s3://$1
 mkdir minecraft
 
 # copy the backup zip over
-aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --silent --cli-read-timeout 0 --cli-connect-timeout 0
+aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --cli-read-timeout 0 --cli-connect-timeout 0
 
 # unzip the backup
 unzip -o minecraft_backup.zip -d minecraft
+
 
 # navigate into mincraft dir
 cd minecraft
