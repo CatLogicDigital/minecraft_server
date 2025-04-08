@@ -14,6 +14,9 @@ mkdir minecraft
 # copy the backup zip over
 aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --quiet --cli-read-timeout 0 --cli-connect-timeout 0
 
+# copy the server icon
+aws s3 cp s3://$1/server-icon.png server-icon.png --quiet --cli-read-timeout 0 --cli-connect-timeout 0
+
 # unzip the backup
 unzip -o minecraft_backup.zip -d minecraft
 
