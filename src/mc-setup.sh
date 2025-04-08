@@ -90,9 +90,7 @@ EOF
 # bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 
 # launch without debug (so codebuild can end)
-screen -dmS minecraft bash -c "cd /minecraft && touch screen_ran && java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
-
-
+screen -dmS minecraft bash -c "cd /minecraft && java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
 
 # redirect port to screen
 sudo yum install -y socat
