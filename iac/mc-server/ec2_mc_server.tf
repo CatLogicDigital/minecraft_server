@@ -113,10 +113,6 @@
     }
  
     // copy pre-configured ec2 instance private key
-    provisioner "file" {
-      source      = file("${path.module}/minecraft-key.pem")
-      destination = "id_rsa"
-    }
    provisioner "file" {
      source      = "${path.module}/minecraft-key.pem"
      destination = "id_rsa"
