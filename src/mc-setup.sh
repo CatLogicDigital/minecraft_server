@@ -1,4 +1,4 @@
- # Install Java 21 (Amazon Corretto)
+# Install Java 21 (Amazon Corretto)
 sudo rpm --import https://yum.corretto.aws/corretto.key
 sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
 sudo yum install -y java-21-amazon-corretto-devel
@@ -79,10 +79,8 @@ EOF
 ###(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
 # ensure all files are readable by screen
-#ls
+# todo check if needed
 sudo chattr -i -R .
-#sudo chown -R $(whoami):$(whoami) .
-#sudo chmod -R 755 .
 
 # Start Minecraft in a named screen session called "minecraft"
 # below 2 line use debug more
