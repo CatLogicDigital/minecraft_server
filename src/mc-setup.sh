@@ -1,4 +1,4 @@
-# Install Java 21 (Amazon Corretto)
+ # Install Java 21 (Amazon Corretto)
 sudo rpm --import https://yum.corretto.aws/corretto.key
 sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
 sudo yum install -y java-21-amazon-corretto-devel
@@ -12,7 +12,7 @@ aws s3 cp account.tfvars s3://$1
 mkdir minecraft
 
 # copy the backup zip over
-aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --cli-read-timeout 0 --cli-connect-timeout 0
+aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --quiet --cli-read-timeout 0 --cli-connect-timeout 0
 
 # unzip the backup
 unzip -o minecraft_backup.zip -d minecraft
