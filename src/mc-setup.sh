@@ -78,7 +78,10 @@ EOF
 ###(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
 # ensure all files are readable by screen
+sudo chown -R $(whoami):$(whoami) .
 chmod -R 755 .
+lsattr -R
+sudo chattr -i filename
 
 # Start Minecraft in a named screen session called "minecraft"
 #screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui #failed
