@@ -77,6 +77,9 @@ EOF
 # insert auto-shutoff into cron tab and run each minute
 ###(crontab -l 2>/dev/null; echo "* * * * * PATH=$PATH:/usr/local/bin python3 auto-shutoff.py s3://$1 $2 $3") | crontab -
 
+# ensure all files are readable by screen
+chmod -R 755 minecraft
+
 # Start Minecraft in a named screen session called "minecraft"
 #screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui #failed
 #screen java -Xmx1024M -Xms1024M -jar server.jar nogui
@@ -87,7 +90,7 @@ EOF
 #screen -dm bash -c 'java -Xmx1024M -Xms1024M -jar server.jar nogui'
 # Start the server in a screen session
 #screen -dmS minecraft bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
-screen -S minecraft
-bash -c "java -Xmx1024M -Xms1024M -jar server.jar nogui"
+screen -dmS minecraft 
+bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar minecraft\server.jar nogui > minecraft.log 2>&1"
 
 echo "Server is ready :3"
