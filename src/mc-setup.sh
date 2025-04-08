@@ -79,9 +79,8 @@ EOF
 
 # ensure all files are readable by screen
 sudo chown -R $(whoami):$(whoami) .
-chmod -R 755 .
-lsattr -R
-sudo chattr -i filename
+sudo chmod -R 755 .
+sudo chattr -i -R .
 
 # Start Minecraft in a named screen session called "minecraft"
 #screen -S minecraft -dm java -Xmx1024M -Xms1024M -jar server.jar nogui #failed
