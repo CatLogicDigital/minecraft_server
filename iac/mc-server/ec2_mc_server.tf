@@ -159,7 +159,7 @@
     // start the minecraft server
     provisioner "remote-exec" {
       inline = [
-        "/home/ec2-user/minecraft/start_server.sh"
+        "./start_server.sh"
       ]
     }
   }
