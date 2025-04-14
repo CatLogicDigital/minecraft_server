@@ -90,7 +90,8 @@ sudo chattr -i -R .
 #screen -dmS minecraft 
 #java -Xmx1024M -Xms1024M -jar server.jar nogui
 #bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
-screen -dmS minecraft bash -c "cd /home/ec2-user/minecraft && java -Xmx1024M -Xms1024M -jar server.jar nogui > /home/ec2-user/minecraft/minecraft.log 2>&1"
+screen -dmS minecraft bash -c "pwd > screen.pwd && whoami > screen.user && env > screen.env && cd ~/minecraft && java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
+
 
 
 
