@@ -95,7 +95,7 @@ EOF
 chmod +x /home/ec2-user/minecraft/start-server.sh
 
 # Launch Minecraft server in screen via this wrapper script
-screen -dmS minecraft /home/ec2-user/minecraft/start-server.sh
+# screen -dmS minecraft /home/ec2-user/minecraft/start-server.sh
 
 
 
@@ -120,4 +120,4 @@ screen -dmS minecraft /home/ec2-user/minecraft/start-server.sh
 #cd ~/minecraft
 #java -Xmx1024M -Xms1024M -jar server.jar nogui
 
-echo "Server is ready :3"
+# echo "Server is ready :3"
