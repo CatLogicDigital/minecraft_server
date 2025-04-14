@@ -134,8 +134,8 @@
       destination = "mc-server.sh"
     }
     provisioner "file" {
-      source      = "../../src/mc_server_launch"
-      destination = "mc_server_launch"
+      source      = "../../src/mc_server_launch.sh"
+      destination = "mc_server_launch.sh"
     }
  
     // copy tf config and var template
