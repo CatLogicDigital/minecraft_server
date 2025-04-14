@@ -90,7 +90,7 @@ sudo chattr -i -R .
 #screen -dmS minecraft 
 #java -Xmx1024M -Xms1024M -jar server.jar nogui
 #bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
-screen -dmS minecraft bash -c "echo STARTED > /home/ec2-user/minecraft/mc.debug; pwd > /home/ec2-user/minecraft/screen.pwd; whoami > /home/ec2-user/minecraft/screen.user; env > /home/ec2-user/minecraft/screen.env; ls -l /home/ec2-user/minecraft >> /home/ec2-user/minecraft/mc.debug; cd /home/ec2-user/minecraft && echo ENTERED_MINECRAFT >> /home/ec2-user/minecraft/mc.debug && java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
+screen -dmS test bash -c "echo test-success > /home/ec2-user/test-screen.txt"
 
 
 
