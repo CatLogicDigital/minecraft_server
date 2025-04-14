@@ -159,7 +159,8 @@
     // start the minecraft server
     provisioner "remote-exec" {
       inline = [
-        "./start_server.sh"
+        "chmod a+x mc-*.sh",
+        "./mc_server_launch.sh"
       ]
     }
   }
