@@ -94,11 +94,11 @@ sudo chattr -i -R .
 # launch without debug (so codebuild can end)
 # screen -dmS minecraft bash -c 'export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1'
 
-screen -dmS minecraft bash -c 'cd ~/minecraft && java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1'
+##screen -dmS minecraft bash -c 'cd ~/minecraft && java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1'
 
 ##debut to try
-#screen -S minecraft bash
-#cd ~/minecraft
-#java -Xmx1024M -Xms1024M -jar server.jar nogui
+screen -S minecraft bash
+cd ~/minecraft
+java -Xmx1024M -Xms1024M -jar server.jar nogui
 
-#echo "Server is ready :3"
+echo "Server is ready :3"
