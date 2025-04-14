@@ -155,4 +155,11 @@
         "./mc-setup.sh ${data.aws_s3_bucket.mc_bucket.id} ${data.aws_sns_topic.mc_shutoff.arn} ${var.aws-region}"
       ]
     }
+
+    // start the minecraft server
+    provisioner "remote-exec" {
+      inline = [
+        "/home/ec2-user/minecraft/start_server.sh"
+      ]
+    }
   }
