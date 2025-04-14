@@ -85,12 +85,26 @@ EOF
 # todo check if needed
 sudo chattr -i -R .
 
+# write a startup script to launch the server in screen
+cat > /home/ec2-user/minecraft/start-server.sh <<'EOF'
+#!/bin/bash
+cd /home/ec2-user/minecraft
+java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1
+EOF
+
+chmod +x /home/ec2-user/minecraft/start-server.sh
+
+# Launch Minecraft server in screen via this wrapper script
+screen -dmS minecraft /home/ec2-user/minecraft/start-server.sh
+
+
+
 # Start Minecraft in a named screen session called "minecraft"
 # below 2 line use debug more
 #screen -dmS minecraft 
 #java -Xmx1024M -Xms1024M -jar server.jar nogui
 #bash -c "export PATH=$PATH; java -Xmx1024M -Xms1024M -jar server.jar nogui > minecraft.log 2>&1"
-screen -dmS test bash -c "echo test-success > /home/ec2-user/test-screen.txt"
+#screen -dmS test bash -c "echo test-success > /home/ec2-user/test-screen.txt"
 
 
 
