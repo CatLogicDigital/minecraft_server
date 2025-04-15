@@ -134,8 +134,8 @@
       destination = "mc-server.sh"
     }
     provisioner "file" {
-      source      = "../../src/mc_server_launch.sh"
-      destination = "mc_server_launch.sh"
+      source      = "../../src/mc-server-launch.sh"
+      destination = "mc-server-launch.sh"
     }
  
     // copy tf config and var template
@@ -163,8 +163,7 @@
     // start the minecraft server
     provisioner "remote-exec" {
       inline = [
-        "chmod a+x mc-*.sh",
-        "./mc_server_launch.sh"
+        "./mc-server-launch.sh"
       ]
     }
   }
