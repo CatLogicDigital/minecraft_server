@@ -12,6 +12,7 @@ screen -dmS minecraft java -Xmx1024M -Xms1024M -jar server.jar nogui >> minecraf
 # Optional: verify it was started
 if screen -list | grep -q "minecraft"; then
   echo "Minecraft server started in screen session 'minecraft'" >> minecraft.log
+  echo "Server is ready :3"
 else
   echo "Failed to start Minecraft server in screen" >> minecraft.log
 fi
