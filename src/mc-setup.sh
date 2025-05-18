@@ -15,21 +15,22 @@ mkdir minecraft
 aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --quiet --cli-read-timeout 0 --cli-connect-timeout 0
 
 # unzip the backup
-unzip -o minecraft_backup.zip -d minecraft
-
-# navigate into mincraft dir
-cd minecraft
+#unzip -o minecraft_backup.zip -d minecraft
+unzip -o minecraft_backup.zip
 
 # install minecraft if this is the first time
 if [ ! -f "minecraft/eula.txt" ]; then
     echo "Installing Minecraft"
         wget https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
+        # navigate into mincraft dir
+        cd minecraft
         java -Xmx1024M -Xms1024M -jar server.jar nogui
-
     echo "### Accepting EULA"
     echo "eula=true" > eula.txt
+    cd ..
 fi
 
+cd minecraft
 echo "Setting server properties"
 set_prop() {
     key="$1"
@@ -68,7 +69,7 @@ cat > ops.json <<EOF
 EOF
 
 # copy the custom server icon
-aws s3 cp s3://$1/server-icon.png minecraft/server-icon.png --quiet --cli-read-timeout 0 --cli-connect-timeout 0
+aws s3 cp s3://$1/server-icon.png server-icon.png --quiet --cli-read-timeout 0 --cli-connect-timeout 0
 
 # install pip
 # rem
