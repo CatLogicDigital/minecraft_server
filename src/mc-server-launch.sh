@@ -6,7 +6,7 @@ cd /home/ec2-user/minecraft || exit 1
 # Log the startup
 echo "Starting Minecraft server with auto-restart in screen..." >> minecraft.log
 
-# Launch Minecraft server in a detached screen session with auto-restart loop
+# Launch Minecraft server with auto-restart loop
 while true; do
   echo 'Launching Minecraft server...' >> minecraft.log
   java -Xmx1024M -Xms1024M -jar server.jar nogui >> minecraft.log 2>&1
