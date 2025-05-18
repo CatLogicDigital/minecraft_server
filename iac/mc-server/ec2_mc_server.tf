@@ -151,7 +151,11 @@
       source      = "../../config/account.tfvars"
       destination = "account.tfvars"
     }
- 
+    provisioner "file" {
+      source      = "./server-icon.png"
+      destination = "server-icon.png"
+    }
+
     // install minecraft and sync backup
     provisioner "remote-exec" {
       inline = [
