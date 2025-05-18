@@ -10,10 +10,8 @@
 
 #!/bin/bash
 
-# Set working directory
 cd /home/ec2-user/minecraft || exit 1
 
-# Write the loop script to disk
 cat > start-loop.sh <<'EOF'
 #!/bin/bash
 cd /home/ec2-user/minecraft || exit 1
@@ -25,18 +23,12 @@ while true; do
 done
 EOF
 
-# Make it executable
 chmod +x start-loop.sh
-
-# Flush the write and give a moment for filesystem sync
 sync
 sleep 1
 
-# Start it inside a screen session with logging to check if screen fails
-screen -dmS minecraft /home/ec2-user/minecraft/start-loop.sh
+# Fully detach the screen session from Terraform/CodeBuild
+setsid screen -dmS minecraft ./start-loop.sh < /dev/null &> /dev/null &
 
-# Log confirmation
 echo "Screen launch command issued." >> minecraft.log
-
-# Exit cleanly so Terraform doesn't hang
 exit 0
