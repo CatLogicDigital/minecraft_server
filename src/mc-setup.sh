@@ -67,10 +67,8 @@ cat > ops.json <<EOF
 ]
 EOF
 
-# copy the server icon
+# copy the custom server icon
 aws s3 cp s3://$1/server-icon.png minecraft/server-icon.png --quiet --cli-read-timeout 0 --cli-connect-timeout 0
-# make server icon readbale to all
-#chmod 644 minecraft/server-icon.png
 
 # install pip
 # rem
