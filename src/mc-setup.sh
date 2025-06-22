@@ -23,6 +23,7 @@ unzip -o minecraft_backup.zip
 # install minecraft if this is the first time
 if [ ! -f "minecraft/eula.txt" ]; then
     echo "Installing Minecraft"
+        # https://jars.vexyhost.com/
         wget https://piston-data.mojang.com/v1/objects/6e64dcabba3c01a7271b4fa6bd898483b794c59b/server.jar
         # navigate into mincraft dir
         cd minecraft
