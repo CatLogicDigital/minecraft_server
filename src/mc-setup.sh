@@ -17,8 +17,8 @@ mkdir minecraft
 aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --quiet --cli-read-timeout 0 --cli-connect-timeout 0
 
 # unzip the backup
-#unzip -o minecraft_backup.zip -d minecraft
-unzip -o minecraft_backup.zip
+unzip -o minecraft_backup.zip -d minecraft
+#unzip -o minecraft_backup.zip
 
 # install minecraft if this is the first time
 # navigate into mincraft dir
