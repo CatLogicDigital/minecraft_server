@@ -21,13 +21,13 @@ aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --quiet --cli-read-t
 unzip -o minecraft_backup.zip
 
 # install minecraft if this is the first time
+# navigate into mincraft dir
+cd minecraft
 if [ ! -f "minecraft/eula.txt" ]; then
     echo "Installing Minecraft"
         # https://jars.vexyhost.com/
         wget https://piston-data.mojang.com/v1/objects/6e64dcabba3c01a7271b4fa6bd898483b794c59b/server.jar
         java -Xmx1024M -Xms1024M -jar server.jar nogui
-    # navigate into mincraft dir
-    cd minecraft
     echo "### Accepting EULA"
     echo "eula=true" > eula.txt
     cd ..
