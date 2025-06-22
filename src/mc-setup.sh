@@ -23,7 +23,7 @@ unzip -o minecraft_backup.zip
 # install minecraft if this is the first time
 if [ ! -f "minecraft/eula.txt" ]; then
     echo "Installing Minecraft"
-        wget https://piston-data.mojang.com/v1/objects/2794c776ee51c3f3bd6b111ecfe5926b4f49df19/server.jar
+        wget https://piston-data.mojang.com/v1/objects/6e64dcabba3c01a7271b4fa6bd898483b794c59b/server.jar
         # navigate into mincraft dir
         cd minecraft
         java -Xmx1024M -Xms1024M -jar server.jar nogui
