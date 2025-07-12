@@ -1,14 +1,4 @@
 #!/bin/bash
-#cd /home/ec2-user/minecraft || exit 1
-#
-#while true; do
-#  echo 'Launching Minecraft server...' >> minecraft.log
-#  java -Xmx1024M -Xms1024M -jar server.jar nogui >> minecraft.log 2>&1
-#  echo 'Server crashed or stopped. Restarting in 5 seconds...' >> minecraft.log
-#  sleep 5
-#done
-
-#!/bin/bash
 
 cd /home/ec2-user/minecraft || exit 1
 
@@ -20,19 +10,18 @@ else
   FLAVOUR="vanilla"
 fi
 
-# Pick the correct jar
-if [ "$FLAVOUR" = "neoforge" ]; then
-  SERVER_JAR="neoforge-server.jar"
-else
-  SERVER_JAR="server.jar"
-fi
-
+# Generate the start-loop.sh with correct launch command per flavour
 cat > start-loop.sh <<EOF
 #!/bin/bash
 cd /home/ec2-user/minecraft || exit 1
 while true; do
-  echo "Launching Minecraft server with $SERVER_JAR..." >> minecraft.log
-  java -Xmx1024M -Xms1024M -jar "$SERVER_JAR" nogui >> minecraft.log 2>&1
+  if [ "$FLAVOUR" = "neoforge" ]; then
+    echo "Launching NeoForge server using run.sh..." >> minecraft.log
+    bash run.sh >> minecraft.log 2>&1
+  else
+    echo "Launching Vanilla server..." >> minecraft.log
+    java -Xmx1024M -Xms1024M -jar server.jar nogui >> minecraft.log 2>&1
+  fi
   echo "Server crashed or stopped. Restarting in 5 seconds..." >> minecraft.log
   sleep 5
 done
