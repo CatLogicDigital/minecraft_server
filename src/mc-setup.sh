@@ -1,4 +1,6 @@
-flavour="neoforge"
+flavour="vanilla"
+#vanilla
+#neoforge
 
 # save the envinment version so we can seperaout backups
 echo "FLAVOUR=$flavour" > /etc/minecraft.env
