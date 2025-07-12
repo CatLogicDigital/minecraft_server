@@ -2,6 +2,8 @@ flavour="neoforge"
 #vanilla
 #neoforge
 
+minecraft_jar='https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar' # 1.21.7 # https://jars.vexyhost.com/
+
 # save the envinment version so we can seperaout backups
 echo "FLAVOUR=$flavour" | sudo tee /etc/minecraft.env
 source /etc/minecraft.env
@@ -28,25 +30,28 @@ aws s3 cp s3://$1/$FLAVOUR/minecraft_backup.zip minecraft_backup.zip --quiet --c
 # unzip the backup
 unzip -o minecraft_backup.zip -d minecraft
 
-# navigate into minecraft dir
-cd minecraft
-
-# Always accept EULA
-echo "eula=true" > eula.txt
-
-echo "Installing Vanilla Minecraft"
-wget https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar # 1.21.7
-
-# check for server flavour
-if [ "$flavour" = "neoforge" ]; then
+if [ "$flavour" = "vanilla" ]; then
+    # install minecraft
+    # navigate into mincraft dir
+    cd minecraft
+    echo "Installing Minecraft"
+        wget "$minecraft_jar" -O server.jar
+        java -Xmx1024M -Xms1024M -jar server.jar nogui
+    echo "### Accepting EULA"
+    echo "eula=true" > eula.txt
+    cd ..
+elif [ "$flavour" = "neoforge" ]; then
     echo "Installing NeoForge"
+    wget "$minecraft_jar" -O server.jar
     wget https://maven.neoforged.net/releases/net/neoforged/neoforge/21.7.20-beta/neoforge-21.7.20-beta-installer.jar -O neoforge-installer.jar
     java -jar neoforge-installer.jar --installServer
     rm -f neoforge-installer.jar
+    # Always accept the EULA
+    echo "eula=true" > eula.txt
 
     mkdir -p mods # create the mods folder
     echo "MODS --- Installing WorldEdit for NeoForge"
-    https://modrinth.com/plugin/worldedit?version=1.21.7&loader=neoforge
+    #https://modrinth.com/plugin/worldedit?version=1.21.7&loader=neoforge
     wget -O mods/worldedit-mod-7.3.15.jar https://cdn.modrinth.com/data/1u6JkXh5/versions/6stG33I5/worldedit-mod-7.3.15.jar
     echo "MODS --- Installing Just Enough Items for NeoForge"
     #https://modrinth.com/mod/jei?version=1.21.7&loader=neoforge
@@ -63,7 +68,6 @@ if [ "$flavour" = "neoforge" ]; then
     echo "MODS --- Xaero's Minimap for NeoForge"
     https://modrinth.com/mod/xaeros-minimap?version=1.21.7&loader=neoforge#download
     wget -O mods/Xaeros_Minimap_25.2.10_NeoForge_1.21.7.jar https://cdn.modrinth.com/data/1bokaNcj/versions/JWQzpqe6/Xaeros_Minimap_25.2.10_NeoForge_1.21.7.jar
-
 fi
 
 echo "Setting server properties"
