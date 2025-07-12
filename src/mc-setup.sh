@@ -1,3 +1,10 @@
+flavour="neoforge"
+
+# save the envinment version so we can seperaout backups
+echo "FLAVOUR=$flavour" > /etc/minecraft.env
+source /etc/minecraft.env
+echo $FLAVOUR
+
 # Install Java 21 (Amazon Corretto)
 sudo rpm --import https://yum.corretto.aws/corretto.key
 sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
@@ -18,22 +25,45 @@ aws s3 cp s3://$1/minecraft_backup.zip minecraft_backup.zip --quiet --cli-read-t
 
 # unzip the backup
 unzip -o minecraft_backup.zip -d minecraft
-#unzip -o minecraft_backup.zip
 
-# install minecraft if this is the first time
-# navigate into mincraft dir
+# navigate into minecraft dir
 cd minecraft
-if [ ! -f "minecraft/eula.txt" ]; then
-    echo "Installing Minecraft"
-        # https://jars.vexyhost.com/
-        wget https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar # 1.21.7
-        java -Xmx1024M -Xms1024M -jar server.jar nogui
-    echo "### Accepting EULA"
-    echo "eula=true" > eula.txt
-    cd ..
+
+# Always accept EULA
+echo "eula=true" > eula.txt
+
+# Choose flavour
+if [ "$flavour" = "vanilla" ]; then
+    echo "Installing Vanilla Minecraft"
+    wget https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar # 1.21.7
+elif [ "$flavour" = "neoforge" ]; then
+    echo "Installing NeoForge"
+    wget https://maven.neoforged.net/releases/net/neoforged/neoforge/21.7.20-beta/neoforge-21.7.20-beta-installer.jar -O neoforge-installer.jar
+    java -jar neoforge-installer.jar --installServer
+    rm -f neoforge-installer.jar
+
+    mkdir -p mods # create the mods folder
+    echo "MODS --- Installing WorldEdit for NeoForge"
+    https://modrinth.com/plugin/worldedit?version=1.21.7&loader=neoforge
+    wget -O mods/worldedit-mod-7.3.15.jar https://cdn.modrinth.com/data/1u6JkXh5/versions/6stG33I5/worldedit-mod-7.3.15.jar
+    echo "MODS --- Installing Just Enough Items for NeoForge"
+    #https://modrinth.com/mod/jei?version=1.21.7&loader=neoforge
+    wget -O mods/jei-1.21.7-neoforge-23.1.0.4.jar https://cdn.modrinth.com/data/u6dRKJwZ/versions/Cp9YPdzb/jei-1.21.7-neoforge-23.1.0.4.jar
+    echo "MODS --- Installing Waystones for NeoForge"
+    #https://modrinth.com/mod/waystones?version=1.21.7&loader=neoforge
+    wget -O mods/waystones-neoforge-1.21.7-21.7.1.jar https://cdn.modrinth.com/data/LOpKHB2A/versions/CYru1h3x/waystones-neoforge-1.21.7-21.7.1.jar
+    echo "MODS --- Installing What The Hell Is That? for NeoForge"
+    #https://modrinth.com/mod/waystones?version=1.21.7&loader=neoforge
+    wget -O mods/wthit-neo-16.0.1.jar https://cdn.modrinth.com/data/6AQIaxuO/versions/tWbt6XcK/wthit-neo-16.0.1.jar
+    echo "MODS --- Mob Loassos for NeoForge"
+    https://modrinth.com/mod/mob-lassos?version=1.21.7&loader=neoforge#download
+    wget -O mods/MobLassos-v21.7.0-1.21.7-NeoForge.jar https://cdn.modrinth.com/data/ftOBbnu8/versions/2MCxG8Tj/MobLassos-v21.7.0-1.21.7-NeoForge.jar
+    echo "MODS --- Xaero's Minimap for NeoForge"
+    https://modrinth.com/mod/xaeros-minimap?version=1.21.7&loader=neoforge#download
+    wget -O mods/Xaeros_Minimap_25.2.10_NeoForge_1.21.7.jar https://cdn.modrinth.com/data/1bokaNcj/versions/JWQzpqe6/Xaeros_Minimap_25.2.10_NeoForge_1.21.7.jar
+
 fi
 
-cd minecraft
 echo "Setting server properties"
 set_prop() {
     key="$1"
@@ -51,7 +81,6 @@ set_prop enable-command-block true
 set_prop gamemode survival
 set_prop motd "meow :3"
 set_prop view-distance 22
-#view distance default 10 max 32
 
 # Create ops.json to assign operator privileges
 cat > ops.json <<EOF
