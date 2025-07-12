@@ -26,7 +26,7 @@ cd minecraft
 if [ ! -f "minecraft/eula.txt" ]; then
     echo "Installing Minecraft"
         # https://jars.vexyhost.com/
-        wget https://piston-data.mojang.com/v1/objects/6e64dcabba3c01a7271b4fa6bd898483b794c59b/server.jar
+        wget https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar # 1.21.7
         java -Xmx1024M -Xms1024M -jar server.jar nogui
     echo "### Accepting EULA"
     echo "eula=true" > eula.txt
