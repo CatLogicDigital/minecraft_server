@@ -34,11 +34,11 @@ cd minecraft
 # Always accept EULA
 echo "eula=true" > eula.txt
 
-# Choose flavour
-if [ "$flavour" = "vanilla" ]; then
-    echo "Installing Vanilla Minecraft"
-    wget https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar # 1.21.7
-elif [ "$flavour" = "neoforge" ]; then
+echo "Installing Vanilla Minecraft"
+wget https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar # 1.21.7
+
+# check for server flavour
+if [ "$flavour" = "neoforge" ]; then
     echo "Installing NeoForge"
     wget https://maven.neoforged.net/releases/net/neoforged/neoforge/21.7.20-beta/neoforge-21.7.20-beta-installer.jar -O neoforge-installer.jar
     java -jar neoforge-installer.jar --installServer
