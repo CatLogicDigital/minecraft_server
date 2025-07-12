@@ -3,7 +3,7 @@ flavour="vanilla"
 #neoforge
 
 # save the envinment version so we can seperaout backups
-echo "FLAVOUR=$flavour" > /etc/minecraft.env
+echo "FLAVOUR=$flavour" | sudo tee /etc/minecraft.env
 source /etc/minecraft.env
 echo $FLAVOUR
 
