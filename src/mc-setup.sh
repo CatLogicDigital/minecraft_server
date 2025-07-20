@@ -2,7 +2,7 @@ flavour="vanilla"
 #vanilla
 #neoforge
 
-minecraft_jar='https://piston-data.mojang.com/v1/objects/05e4b48fbc01f0385adb74bcff9751d34552486c/server.jar' # 1.21.7 # https://jars.vexyhost.com/
+minecraft_jar='https://piston-data.mojang.com/v1/objects/6bce4ef400e4efaa63a13d5e6f6b500be969ef81/server.jar' # 1.21.8 # https://jars.vexyhost.com/
 
 # save the envinment version so we can seperaout backups
 echo "FLAVOUR=$flavour" | sudo tee /etc/minecraft.env
