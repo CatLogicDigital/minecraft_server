@@ -30,10 +30,11 @@ aws s3 cp s3://$1/$FLAVOUR/minecraft_backup.zip minecraft_backup.zip --cli-read-
 # unzip the backup
 unzip -o minecraft_backup.zip -d minecraft
 
+cd minecraft
+
 if [ "$flavour" = "vanilla" ]; then
     # install minecraft
     # navigate into mincraft dir
-    cd minecraft
     echo "Installing Minecraft"
         wget "$minecraft_jar" -O server.jar
         java -Xmx1024M -Xms1024M -jar server.jar nogui
