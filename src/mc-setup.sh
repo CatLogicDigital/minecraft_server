@@ -40,7 +40,6 @@ if [ "$flavour" = "vanilla" ]; then
         java -Xmx1024M -Xms1024M -jar server.jar nogui
     echo "### Accepting EULA"
     echo "eula=true" > eula.txt
-    cd ..
 elif [ "$flavour" = "neoforge" ]; then
     echo "Installing NeoForge"
     wget "$minecraft_jar" -O server.jar
