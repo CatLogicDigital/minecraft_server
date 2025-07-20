@@ -17,7 +17,7 @@ cd /home/ec2-user/minecraft || exit 1
 while true; do
   if [ "$FLAVOUR" = "neoforge" ]; then
     echo "Launching NeoForge server using run.sh..." >> minecraft.log
-    bash run.sh >> minecraft.log 2>&1
+    ./run.sh nogui
   else
     echo "Launching Vanilla server..." >> minecraft.log
     java -Xmx1024M -Xms1024M -jar server.jar nogui >> minecraft.log 2>&1
