@@ -18,6 +18,10 @@ sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.r
 sudo yum install -y java-21-amazon-corretto-devel
 # install tmux, unzip, python3
 sudo yum install -y tmux unzip python3 python3-pip
+# install cron
+sudo yum install -y cronie
+sudo systemctl enable crond
+sudo systemctl start crond
 
 # copy tf templates to minecraft backup bucket
 aws s3 cp config.tf s3://$1
