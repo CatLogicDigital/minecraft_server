@@ -77,7 +77,6 @@ jei
 waystones
 wthit
 mob-lassos
-xaeros-minimap
 EOF
 
     echo "Installing MODS via Modrinth API"
