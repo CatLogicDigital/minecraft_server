@@ -57,7 +57,7 @@ elif [ "$flavour" = "neoforge" ]; then
     mkdir -p mods # create the mods folder
 
     echo "Installing MC-Modrinth-Project-Manager"
-    pip3 install requests
+    pip3 install "urllib3<2" "requests<2.32"
     curl -Lo mcsmp.py https://raw.githubusercontent.com/un-pogaz/MC-Modrinth-Project-Manager/main/mcsmp.py
     chmod +x mcsmp.py
 
