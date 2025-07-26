@@ -44,9 +44,6 @@ echo "Players online: $player_count"
 source /etc/minecraft.env
 zero_count_file="/tmp/mc-zero-count"
 
-source /etc/minecraft.env
-zero_count_file="/tmp/mc-zero-count"
-
 if [ "$player_count" == "0" ]; then
     count=$(cat "$zero_count_file" 2>/dev/null || echo 0)
     count=$((count + 1))
