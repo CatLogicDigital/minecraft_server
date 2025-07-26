@@ -90,6 +90,13 @@
         ],
         "Effect": "Allow",
         "Resource": "*"
+      },
+      {
+        "Action": [
+          "ec2:TerminateInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
       }
     ]
   }
