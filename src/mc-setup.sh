@@ -46,6 +46,7 @@ if [ "$flavour" = "vanilla" ]; then
 elif [ "$flavour" = "neoforge" ]; then
     echo "Installing NeoForge"
     wget "$minecraft_jar" -O server.jar
+    java -Xmx1024M -Xms1024M -jar server.jar nogui # to generate server proprties file
     # https://neoforged.net/
     wget https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.4-beta/neoforge-21.8.4-beta-installer.jar -O neoforge-installer.jar
     java -jar neoforge-installer.jar --installServer
