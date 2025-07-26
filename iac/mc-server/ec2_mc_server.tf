@@ -13,7 +13,7 @@
   }
  
   resource "aws_instance" "minecraft" {
-    instance_type = "t2.medium"
+    instance_type = "t4g.medium" #t4g.large if need more memory or lots of mods
  
     ami               = var.ami-images[var.aws-region]
     security_groups   = [aws_security_group.minecraft.id]
