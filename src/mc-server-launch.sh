@@ -41,7 +41,10 @@ output=$(tmux capture-pane -pt minecraft -S -100)
 player_count=$(echo "$output" | grep "There are " | tail -n 1 | grep -oP 'There are \K[0-9]+')
 echo "Players online: $player_count"
 
-flavour=$(cat /etc/minecraft.env)
+source /etc/minecraft.env
+zero_count_file="/tmp/mc-zero-count"
+
+source /etc/minecraft.env
 zero_count_file="/tmp/mc-zero-count"
 
 if [ "$player_count" == "0" ]; then
@@ -52,19 +55,18 @@ else
     echo 0 > "$zero_count_file"
 fi
 
-# If idle for 60 min (1 x 10min intervals)
 if [ "$count" -ge 1 ]; then
     echo "Server idle period met. Creating backup zip..."
     ts=$(date +"%Y%m%d_%H%M%S")
     zip_name="${ts}__minecraft_backup.zip"
     zip -rq "$zip_name" Ella* -x "logs/*"
-    flavour=$(cat /etc/minecraft.env)
-    aws s3 cp "$zip_name" s3://catlogic-mc-backup/$flavour/
-    aws s3 cp s3://catlogic-mc-backup/$flavour/"$zip_name" s3://catlogic-mc-backup/$flavour/minecraft_backup.zip
+    aws s3 cp "$zip_name" "s3://catlogic-mc-backup/$FLAVOUR/"
+    aws s3 cp "s3://catlogic-mc-backup/$FLAVOUR/$zip_name" "s3://catlogic-mc-backup/$FLAVOUR/minecraft_backup.zip"
 
     echo "Backup complete. Terminating instance..."
     #aws ec2 terminate-instances --instance-ids $(curl -s http://169.254.169.254/latest/meta-data/instance-id) --region eu-west-2
 fi
+
 EOF
 
 chmod +x mc-backup.sh
