@@ -60,9 +60,14 @@ elif [ "$flavour" = "neoforge" ]; then
     echo "Installing MC-Modrinth-Project-Manager"
     pip3 install "urllib3<2" "requests<2.32"
     curl -Lo mcsmp.py https://raw.githubusercontent.com/un-pogaz/MC-Modrinth-Project-Manager/main/mcsmp.py
-    # Patch datetime.fromisoformat calls to strip trailing 'Z'
-    sed -i 's/fromisoformat(\(.*\))/fromisoformat(\1.rstrip("Z"))/g' mcsmp.py
     chmod +x mcsmp.py
+    
+    # Patch mcsmp.py to fix ISO date parsing with trailing 'Z'
+    pip3 install python-dateutil
+    if ! grep -q 'from dateutil.parser import isoparse' mcsmp.py; then
+        sed -i '/^import /a from dateutil.parser import isoparse' mcsmp.py
+    fi
+    sed -i 's/datetime.fromisoformat/isoparse/g' mcsmp.py
 
     echo "Writing mod list to mods.txt"
     cat > mods.txt <<EOF
