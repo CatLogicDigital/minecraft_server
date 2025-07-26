@@ -58,6 +58,7 @@ if [ "$count" -ge 1 ]; then
     ts=$(date +"%Y%m%d_%H%M%S")
     zip_name="${ts}__minecraft_backup.zip"
     zip -rq "$zip_name" Ella* -x "logs/*"
+    flavour=$(cat /etc/minecraft.env)
     aws s3 cp "$zip_name" s3://catlogic-mc-backup/$flavour/
     aws s3 cp s3://catlogic-mc-backup/$flavour/"$zip_name" s3://catlogic-mc-backup/$flavour/minecraft_backup.zip
 
