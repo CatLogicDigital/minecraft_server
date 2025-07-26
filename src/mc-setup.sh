@@ -1,4 +1,4 @@
-flavour="vanilla"
+flavour="neoforge"
 #vanilla
 #neoforge
 
