@@ -50,7 +50,7 @@ elif [ "$flavour" = "neoforge" ]; then
     echo "### Accepting EULA"
     echo "eula=true" > eula.txt
     # https://neoforged.net/
-    wget https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.4-beta/neoforge-21.8.4-beta-installer.jar -O neoforge-installer.jar
+    wget https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.15/neoforge-21.8.15-installer.jar -O neoforge-installer.jar
     java -jar neoforge-installer.jar --installServer
     chmod +x run.sh
     rm -f neoforge-installer.jar
