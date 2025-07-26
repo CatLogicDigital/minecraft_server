@@ -51,19 +51,16 @@ else
     echo 0 > "$zero_count_file"
 fi
 
-# "$count" -ge 6 = 6x10 backup after 60 minutes
+# If idle for 60 min (6 x 10min intervals)
 if [ "$count" -ge 1 ]; then
-    echo Server idle period met. Creating backup zip...
+    echo "Server idle period met. Creating backup zip..."
     ts=$(date +"%Y%m%d_%H%M%S")
     zip_name="${ts}__minecraft_backup.zip"
-    cd minecraft
-    zip -rq "../$zip_name" Ella* -x "logs/*"
-    cd ..
+    zip -rq "$zip_name" Ella* -x "logs/*"
     aws s3 cp "$zip_name" s3://catlogic-mc-backup/$flavour/
     aws s3 cp s3://catlogic-mc-backup/$flavour/"$zip_name" s3://catlogic-mc-backup/$flavour/minecraft_backup.zip
 
-    # After successful backup and 60 minutes of zero players
-    Backup compelte. Terminating instance..."
+    echo "Backup complete. Terminating instance..."
     #aws ec2 terminate-instances --instance-ids $(curl -s http://169.254.169.254/latest/meta-data/instance-id) --region eu-west-2
 fi
 EOF
@@ -75,7 +72,6 @@ tmux new-session -d -s minecraft './start-loop.sh'
 
 # Schedule mc-backup.sh to run every 10 minutes
 (crontab -l 2>/dev/null; echo "*/10 * * * * /home/ec2-user/minecraft/mc-backup.sh >> /home/ec2-user/minecraft/backup.log 2>&1") | crontab -
-
 
 echo "Minecraft server launched in tmux." >> minecraft.log
 exit 0
