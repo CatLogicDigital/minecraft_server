@@ -15,7 +15,7 @@ cat > start-loop.sh <<EOF
 #!/bin/bash
 cd /home/ec2-user/minecraft || exit 1
 while true; do
-  if [ "$FLAVOUR" = "neoforge" ]; then
+  if [ "\$FLAVOUR" = "neoforge" ]; then
     echo "Launching NeoForge server using run.sh..." >> minecraft.log
     ./run.sh nogui
   else
@@ -29,8 +29,53 @@ EOF
 
 chmod +x start-loop.sh
 
+# Generate the mc-backup.sh that checks player count and backs up if idle for 60 min
+cat > mc-backup.sh <<'EOF'
+#!/bin/bash
+cd /home/ec2-user/minecraft || exit 1
+
+tmux send-keys -t minecraft "list" C-m
+sleep 2
+output=$(tmux capture-pane -pt minecraft -S -100)
+player_count=$(echo "$output" | grep "There are " | tail -n 1 | grep -oP 'There are \K[0-9]+')
+echo "Players online: $player_count"
+
+flavour=$(cat /etc/minecraft.env)
+zero_count_file="/tmp/mc-zero-count"
+
+if [ "$player_count" == "0" ]; then
+    count=$(cat "$zero_count_file" 2>/dev/null || echo 0)
+    count=$((count + 1))
+    echo $count > "$zero_count_file"
+else
+    echo 0 > "$zero_count_file"
+fi
+
+# "$count" -ge 6 = 6x10 backup after 60 minutes
+if [ "$count" -ge 1 ]; then
+    echo Server idle period met. Creating backup zip...
+    ts=$(date +"%Y%m%d_%H%M%S")
+    zip_name="${ts}__minecraft_backup.zip"
+    cd minecraft
+    zip -rq "../$zip_name" Ella* -x "logs/*"
+    cd ..
+    aws s3 cp "$zip_name" s3://catlogic-mc-backup/$flavour/
+    aws s3 cp s3://catlogic-mc-backup/$flavour/"$zip_name" s3://catlogic-mc-backup/$flavour/minecraft_backup.zip
+
+    # After successful backup and 60 minutes of zero players
+    Backup compelte. Terminating instance..."
+    #aws ec2 terminate-instances --instance-ids $(curl -s http://169.254.169.254/latest/meta-data/instance-id) --region eu-west-2
+fi
+EOF
+
+chmod +x mc-backup.sh
+
 # Start with tmux (creates or attaches to a detached session)
 tmux new-session -d -s minecraft './start-loop.sh'
+
+# Schedule mc-backup.sh to run every 10 minutes
+(crontab -l 2>/dev/null; echo "*/10 * * * * /home/ec2-user/minecraft/mc-backup.sh >> /home/ec2-user/minecraft/backup.log 2>&1") | crontab -
+
 
 echo "Minecraft server launched in tmux." >> minecraft.log
 exit 0
