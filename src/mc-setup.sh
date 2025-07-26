@@ -77,6 +77,7 @@ jei
 waystones
 wthit
 mob-lassos
+axiom
 EOF
 
     echo "Installing MODS via Modrinth API"
