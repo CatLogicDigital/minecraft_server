@@ -8,5 +8,5 @@ aws-zones = {
 }
 
 ami-images = {
-  "eu-west-2" = "ami-0faea58d4f6a5b206"  # Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type - no UEFI
+  "eu-west-2" = "ami-0eb260c4d5475b901"  # Amazon Linux 2023 AMI (x86_64)
 }
