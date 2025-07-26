@@ -72,7 +72,7 @@ xaeros-minimap
 EOF
 
     echo "Installing MODS via Modrinth API"
-    python3 mcsmp.py directory_add minecraft "$(pwd)"
+    python3 mcsmp.py directory-add minecraft "$(pwd)"
     python3 mcsmp.py version minecraft 1.21.7
     python3 mcsmp.py loader minecraft neoforge
 
