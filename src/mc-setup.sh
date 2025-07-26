@@ -73,9 +73,9 @@ xaeros-minimap
 EOF
 
     echo "Installing MODS via Modrinth API"
-    python3 mcsmp.py directory-add minecraft /home/ec2-user/minecraft minecraft
     python3 mcsmp.py version minecraft 1.21.7
     python3 mcsmp.py loader minecraft neoforge
+    python3 mcsmp.py directory-add minecraft /home/ec2-user/minecraft minecraft
 
     while IFS= read -r mod; do
         echo "Installing MOD: $mod"
