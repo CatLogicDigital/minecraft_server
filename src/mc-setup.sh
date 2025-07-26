@@ -70,6 +70,14 @@ elif [ "$flavour" = "neoforge" ]; then
     echo "MODS --- Xaero's Minimap for NeoForge"
     https://modrinth.com/mod/xaeros-minimap?version=1.21.7&loader=neoforge#download
     wget -O mods/Xaeros_Minimap_25.2.10_NeoForge_1.21.7.jar https://cdn.modrinth.com/data/1bokaNcj/versions/JWQzpqe6/Xaeros_Minimap_25.2.10_NeoForge_1.21.7.jar
+    #install depedancies
+    echo "MODS --- Installing Balm (required by Waystones)"
+    wget -O mods/balm-21.7.0.jar https://cdn.modrinth.com/data/qvIfYCYJ/versions/XL7zoeFz/balm-21.7.0.jar
+    echo "MODS --- Installing BadPackets (required by WTHIT)"
+    wget -O mods/badpackets-forge-0.9.0.jar https://cdn.modrinth.com/data/WL2x6fy6/versions/LF1C3uHO/badpackets-forge-0.9.0.jar
+    echo "MODS --- Installing PuzzlesLib (required by MobLassos)"
+    wget -O mods/puzzleslib-1.21.7-21.7.1.jar https://cdn.modrinth.com/data/P7dR8mSH/versions/hDbfngXA/puzzleslib-1.21.7-21.7.1.jar
+
 fi
 
 echo "Setting server properties"
