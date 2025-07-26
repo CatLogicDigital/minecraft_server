@@ -8,5 +8,5 @@ aws-zones = {
 }
 
 ami-images = {
-  "eu-west-2" = "ami-0175d4f2509d1d9e8"  # Amazon Linux 2023 6,1 AMI
+  "eu-west-2" = "ami-0532f1280ac457a8f"  # Amazon Linux 2023 6,1 AMI (ami-0175d4f2509d1d9e8 for x64)
 }
