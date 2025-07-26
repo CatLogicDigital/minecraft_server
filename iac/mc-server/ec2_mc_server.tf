@@ -11,7 +11,7 @@
   data "aws_s3_bucket" "mc_backup" {
     bucket = var.mc-backup-bucket-name
   }
- 
+
   resource "aws_instance" "minecraft" {
     instance_type = "t4g.medium" #t4g.large if need more memory or lots of mods
  
