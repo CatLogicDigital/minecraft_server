@@ -14,6 +14,7 @@ fi
 cat > start-loop.sh <<EOF
 #!/bin/bash
 cd /home/ec2-user/minecraft || exit 1
+source /etc/minecraft.env
 while true; do
   if [ "\$FLAVOUR" = "neoforge" ]; then
     echo "Launching NeoForge server using run.sh..." >> minecraft.log
@@ -51,7 +52,7 @@ else
     echo 0 > "$zero_count_file"
 fi
 
-# If idle for 60 min (6 x 10min intervals)
+# If idle for 60 min (1 x 10min intervals)
 if [ "$count" -ge 1 ]; then
     echo "Server idle period met. Creating backup zip..."
     ts=$(date +"%Y%m%d_%H%M%S")
