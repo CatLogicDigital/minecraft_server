@@ -4,6 +4,7 @@ flavour="neoforge"
 # vanilla
 # neoforge
 
+minecraft_version = 1.21.8
 minecraft_jar='https://piston-data.mojang.com/v1/objects/6bce4ef400e4efaa63a13d5e6f6b500be969ef81/server.jar' # 1.21.8 # https://jars.vexyhost.com/
 
 # save the envinment version so we can seperaout backups
@@ -81,7 +82,7 @@ EOF
 
     echo "Installing MODS via Modrinth API"
     python3 mcsmp.py directory-add minecraft /home/ec2-user/minecraft minecraft
-    python3 mcsmp.py version minecraft 1.21.7
+    python3 mcsmp.py version minecraft "$minecraft_version"
     python3 mcsmp.py loader minecraft neoforge
 
     while IFS= read -r mod; do
